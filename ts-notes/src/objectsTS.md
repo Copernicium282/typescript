@@ -1,6 +1,12 @@
-# `objectsTS.ts` — Object Types, Utility Types (Partial, Required, Pick, Omit)
+---
+tags: [typescript, objects, utility-types]
+topic: Object Types & Utility Types
+status: done
+---
 
-> **Source:** `typescript/src/objectsTS.ts`
+# `objectsTS.ts` — Object Types, Utility Types
+
+**Source:** `typescript/src/objectsTS.ts`
 
 ## Code
 
@@ -111,27 +117,22 @@ type PublicChai = Omit<ProductionChai, "secretIngredients"> // Construct a type 
 
 ## Breakdown
 
-### Object Type Inference
-- `const chai = {...}` — TS infers an object type with property types.
+### Structural Typing
+- `smallCup = largeCup` works because `largeCup` structurally satisfies `Cup`.
 
-### Structural Typing (Duck Typing)
-- `smallCup = largeCup` works because `largeCup` has all the properties of `Cup` (`volume: string`). TS Docs: *"TypeScript is a structurally typed type system — only concerned with the structure and capabilities."*
+> [!quote] TypeScript Docs
+> *"TypeScript is a structurally typed type system — only concerned with the structure and capabilities of types."*
 
 ### Utility Types (from TS Docs)
 
-| Utility | Effect |
-|---------|--------|
-| `Partial<T>` | Makes all properties optional |
-| `Required<T>` | Makes all properties required |
-| `Pick<T, K>` | From T, pick a set of properties K |
-| `Omit<T, K>` | Construct a type excluding properties K |
+| Utility | Effect | Example |
+|---------|--------|---------|
+| `Partial<T>` | All properties optional | Partial updates |
+| `Required<T>` | All properties mandatory | Form submission |
+| `Pick<T, K>` | Pick subset of keys | `Pick<Chai, "name">` |
+| `Omit<T, K>` | Exclude keys | `Omit<Chai, "secret">` |
 
-- `Partial<Chai>` — all properties become optional. Useful for partial updates.
-- `Required<ChaiOrder>` — makes optional properties mandatory.
-- `Pick<NewChai, "name" | "price">` — creates a type with only `name` and `price`.
-- `Omit<ProductionChai, "secretIngredients">` — creates a type without `secretIngredients`.
+> [!tip] Utility Types
+> These are built into TypeScript. See [[interface]] for more on `Pick`/`Omit` with generics.
 
-### Excess Property Checking
-- Assigning an object literal with extra properties directly to a typed variable errors, but assigning an existing variable (`largeCup`) to a typed variable doesn't — due to structural typing.
-
----
+**See also:** [[interface]], [[generics]], [[functionTS]]

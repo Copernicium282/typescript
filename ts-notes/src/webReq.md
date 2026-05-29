@@ -1,6 +1,12 @@
-# `webReq.ts` — Axios with TypeScript
+---
+tags: [typescript, axios, api, generics]
+topic: Axios with TypeScript
+status: done
+---
 
-> **Source:** `typescript/src/webReq.ts`
+# `webReq.ts` — Type-Safe API Calls with Axios
+
+**Source:** `typescript/src/webReq.ts`
 
 ## Code
 
@@ -35,18 +41,16 @@ const fetchData = async ()=> {
 
 ## Breakdown
 
-### Importing Types
-- `import type { AxiosResponse } from "axios"` — `import type` is a TS-only import that is erased at runtime. TS Docs: *"`type` modifier on an import tells the compiler that this is a type-only import."*
+### Type-only Import
+- `import type { AxiosResponse }` — erased at runtime.
+
+> [!quote] TypeScript Docs
+> *"`type` modifier on an import tells the compiler that this is a type-only import."*
 
 ### Generic Response Typing
-- `AxiosResponse<Todo>` — Axios' response type is generic. `response.data` is typed as `Todo`.
-- TS Docs (Generics): *"This pattern is common in libraries where the user specifies the shape of the response data."*
+- `AxiosResponse<Todo>` — `response.data` is typed as `Todo`.
 
-### Axios Error Handling
-- `axios.isAxiosError(error)` — type guard that narrows `error` to Axios-specific error type.
-- `error.response.status` — only accessible after narrowing.
+### Axios Error Guards
+- `axios.isAxiosError(error)` — narrows to Axios error type, enabling access to `error.response.status`.
 
-### `async` Return Type
-- TS Docs: *"If you want to annotate the return type of a function which returns a promise, use `Promise<T>`: `async function getData(): Promise<Todo>`"*
-
----
+**See also:** [[fetchReq]], [[generics]]

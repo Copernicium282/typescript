@@ -1,6 +1,12 @@
-# `Card.tsx` — React Component Props with `PropsWithChildren` & `ReactNode`
+---
+tags: [typescript, react, components, props]
+topic: React Component — Card with PropsWithChildren
+status: done
+---
 
-> **Source:** `typescript/reactTs/src/components/Card.tsx`
+# `Card.tsx` — Props With Children & ReactNode
+
+**Source:** `typescript/reactTs/src/components/Card.tsx`
 
 ## Code
 
@@ -27,15 +33,15 @@ export function Card({title, children, footer}: CardProps){
 ## Breakdown
 
 ### `PropsWithChildren`
-- `interface CardProps extends PropsWithChildren` — automatically includes `children?: ReactNode`. TS Docs: *"PropsWithChildren is a utility type that adds `children` prop."*
+- Automatically adds `children?: ReactNode`.
 
 ### `ReactNode`
-- `footer?: ReactNode` — can render any JSX element, string, number, fragment, or array of these. TS Docs: *"`ReactNode` is the most general type for what can be rendered."*
-
-### Destructuring Props
-- `function Card({title, children, footer}: CardProps)` — destructures the props object with full type safety.
+- Any renderable: JSX, string, number, fragment, `null`, `false`.
 
 ### Conditional Rendering
-- `{footer && <footer>{footer}</footer>}` — renders the `footer` element only when `footer` prop is provided (truthiness check).
+- `{footer && <footer>{footer}</footer>}` — renders only when `footer` is provided.
 
----
+> [!tip] Destructuring Pattern
+> `function Card({title, children, footer}: CardProps)` — clean, typed destructuring.
+
+**See also:** [[ChaiCard]], [[App]]

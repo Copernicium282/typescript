@@ -1,6 +1,12 @@
-# `useFetch.ts` — Custom Hook with Generics (React TS)
+---
+tags: [typescript, react, hooks, generics]
+topic: Custom Hook with Generics
+status: done
+---
 
-> **Source:** `typescript/reactTs/src/hooks/useFetch.ts`
+# `useFetch.ts` — Generic Type-Safe Fetch Hook
+
+**Source:** `typescript/reactTs/src/hooks/useFetch.ts`
 
 ## Code
 
@@ -50,24 +56,26 @@ export function useFetch<T>(url: string): FetchState<T> {
 
 ## Breakdown
 
-### Generic Custom Hook
-- `function useFetch<T>(url: string): FetchState<T>` — the generic `T` specifies the shape of fetched data.
-- TS Docs: *"Generics allow you to create reusable components that work with a variety of types."*
+### Generic Hook (`useFetch<T>`)
+- `T` specifies the shape of `data`.
 
-### `useState` with Generic
-- `useState<FetchState<T>>(...)` — React's `useState` accepts a type parameter. TS Docs: "React hooks are heavily typed with generics."
+> [!quote] TypeScript Docs (Generics)
+> *"Generics allow you to create reusable components that work with a variety of types."*
 
-### `FetchState<T>` Interface
-- `data: T | null` — data is either the generic type or `null` (before fetch completes).
-- `loading: boolean` / `error: string | null` — explicit states for loading/error.
+### State Interface
+| Field | Type | Meaning |
+|-------|------|---------|
+| `data` | `T \| null` | Fetched data or null |
+| `loading` | `boolean` | In-flight indicator |
+| `error` | `string \| null` | Error message |
 
 ### Type Assertion
-- `(await response.json()) as T` — asserts the parsed JSON matches type `T`. TS Docs: *"Type assertions tell the compiler 'trust me, I know what I'm doing.'"*
+- `(await response.json()) as T` — tells TS the shape.
 
 ### AbortController
-- `AbortController` + `abortController.signal` — cancels fetch on cleanup. `AbortError` check prevents state updates after unmount.
+- Cancels fetch on unmount. Checks `AbortError` to avoid updating unmounted state.
 
-### Cleanup
-- `return () => abortController.abort()` — useEffect cleanup prevents memory leaks.
+### `instanceof Error` Narrowing
+- See [[typeNarrowing]] for narrowing patterns.
 
----
+**See also:** [[generics]], [[typeNarrowing]], [[webReq]]

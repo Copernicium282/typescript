@@ -1,6 +1,12 @@
-# `oop.ts` — Classes, Access Modifiers, Getters/Setters, Abstract Classes, Composition
+---
+tags: [typescript, oop, classes]
+topic: Object-Oriented Programming & Classes
+status: done
+---
 
-> **Source:** `typescript/src/oop.ts`
+# `oop.ts` — Classes, Access Modifiers, Abstract Classes
+
+**Source:** `typescript/src/oop.ts`
 
 ## Code
 
@@ -109,40 +115,30 @@ class ChaiMaker{
 }
 ```
 
-## Breakdown
+## Access Modifiers
 
-### Class Property Declarations
-- TS requires properties to be declared and initialized (in constructor or inline). TS Docs: *"TypeScript offers full support for the `class` keyword."*
+| Modifier | Scope | Runtime? |
+|----------|-------|----------|
+| `public` (default) | Anywhere | ❌ TS-only |
+| `private` | Same class | ❌ TS-only |
+| `protected` | Class + subclasses | ❌ TS-only |
+| `#field` (ES private) | Same class | ✅ Real JS private |
 
-### Access Modifiers
+> [!quote] TypeScript Docs
+> *"TypeScript offers full support for the `class` keyword introduced in ES2015."*
 
-| Modifier | Access |
-|----------|--------|
-| `public` (default) | Anywhere |
-| `private` | Only within the class |
-| `protected` | Within the class and subclasses |
+## Other Features
 
-### ECMAScript `#` Private Fields
-- `#balance` — native JS private fields (`#` prefix). Hard private (enforced at runtime, not just TS compile-time).
+| Feature | Example | Note |
+|---------|---------|------|
+| Parameter properties | `constructor(public flavour: string)` | Declares + assigns |
+| `readonly` | `readonly capacity: number` | Init-only assign |
+| Getters/Setters | `get sugar()` / `set sugar()` | With validation |
+| `static` | `static ShopName` | Class-level, no instance |
+| Abstract classes | `abstract class Drink` | Must be extended |
+| Composition | `ChaiMaker` takes `Heater` | Prefer over inheritance |
 
-### `readonly`
-- `readonly capacity: number` — can only be assigned during declaration or in constructor.
+> [!tip] Composition > Inheritance
+> See `ChaiMaker` taking `Heater` via constructor — flexible, testable.
 
-### Getters/Setters
-- `get sugar()` / `set sugar(value)` — accessor methods. TS Docs: *"TypeScript supports getters/setters as a way of intercepting accesses to a member of an object."*
-- Setter can include validation logic.
-
-### Parameter Properties
-- `constructor(public flavour: string)` — shorthand that both declares and assigns a property. Saves boilerplate.
-
-### `static` Members
-- `static ShopName` — accessed on the class itself, not instances. TS Docs: *"Static members are visible on the class itself rather than on the instances."*
-
-### Abstract Classes
-- `abstract class Drink` — cannot be instantiated directly. TS Docs: *"Abstract classes are base classes from which other classes may be derived."*
-- `abstract make(): void` — subclasses must implement.
-
-### Composition over Inheritance
-- `ChaiMaker` takes a `Heater` via constructor. TS Docs: *"Favor composition over inheritance"* is a common OOP design pattern.
-
----
+**See also:** [[interfacePt2]], [[interface]]

@@ -1,6 +1,12 @@
-# `functionTS.ts` — Function Types, Optional & Default Params, Return Types
+---
+tags: [typescript, functions, parameters]
+topic: Function Types & Parameters
+status: done
+---
 
-> **Source:** `typescript/src/functionTS.ts`
+# `functionTS.ts` — Function Types, Optional & Default Params
+
+**Source:** `typescript/src/functionTS.ts`
 
 ## Code
 
@@ -42,24 +48,29 @@ function createChai(order: { // custom/complex dtype
 
 ## Breakdown
 
-### Parameter Type Annotations
-- `type: string, cups: number` — TS Docs: *"When you declare a function, you can add type annotations after each parameter."*
-- Invalid arguments caught at compile time.
+### Parameter Annotations
+- `type: string, cups: number` — TS checks arguments at call sites.
 
-### Return Type Annotations
-- `function getChaiPrice(): number` — explicit return type. TS Docs: *"You usually don't need a return type annotation because TypeScript will infer it."*
+> [!quote] TypeScript Docs
+> *"When you declare a function, you can add type annotations after each parameter."*
 
-### Union Return Types
-- `makeOrder(order: string): string | null` — function may return either type.
+### Return Types
+- `getChaiPrice(): number` — explicit. Usually inference suffices.
 
-### `void` Return
-- `logChai(): void` — function has no return value. TS Docs: *"`void` represents the return value of functions which don't return a value."*
+### Union Return
+- `makeOrder(order: string): string | null` — see [[unionAndAny]].
 
-### Optional & Default Parameters
-- `type?: string` — optional param (may be `undefined`). Must come after required params.
-- `type: string = "Masala"` — default value. TS infers type from default.
+### `void`
+- `logChai(): void` — no return value.
+
+> [!quote] TypeScript Docs
+> *"`void` represents the return value of functions which don't return a value."*
+
+### Optional & Default
+- `type?: string` — optional (comes last).
+- `type: string = "Masala"` — default value.
 
 ### Inline Object Types
-- `createChai(order: { type: string; sugar: number; size: "small" | "large" })` — anonymous object type as parameter. TS Docs: *"To define an object type, simply list its properties and their types."*
+- `createChai(order: { type: string; sugar: number; size: "small" | "large" })` — anonymous inline type.
 
----
+**See also:** [[index]], [[typeNarrowing]], [[objectsTS]]

@@ -1,6 +1,12 @@
-# `fetchReq.ts` — Fetch API with TypeScript
+---
+tags: [typescript, fetch, api]
+topic: Fetch API with TypeScript
+status: done
+---
 
-> **Source:** `typescript/src/fetchReq.ts`
+# `fetchReq.ts` — Type-Safe Fetch
+
+**Source:** `typescript/src/fetchReq.ts`
 
 ## Code
 
@@ -30,14 +36,13 @@ const fetchData = async ()=> {
 
 ## Breakdown
 
-### Type Annotations for `fetch`
-- `const data: Todo = await response.json()` — `response.json()` returns `Promise<any>`. Type annotation asserts the shape.
-- Type assertion alternative: `const data = await response.json() as Todo`.
+### `response.json()` Typing
+- `const data: Todo = await response.json()` — `response.json()` returns `Promise<any>`. The annotation asserts the shape. Alternative: `as Todo`.
 
 ### Response Validation
-- `if(!response.ok)` — checks HTTP status before parsing. The `ok` property is `true` for status 200-299.
+- `if(!response.ok)` — checks HTTP 200-299 before parsing.
 
-### Error Handling
-- `catch (error: any)` — `error` in `catch` defaults to `unknown`. Using `any` skips type checking — prefer `error instanceof Error` narrowing.
+> [!tip] Use `error instanceof Error`
+> `catch (error: any)` skips type safety. Narrow with `instanceof Error` instead. See [[typeNarrowing]].
 
----
+**See also:** [[webReq]], [[generics]], [[typeNarrowing]]

@@ -1,6 +1,12 @@
-# `typeNarrowing.ts` — Type Narrowing, Guards, & Custom Type Predicates
+---
+tags: [typescript, narrowing, type-guards]
+topic: Type Narrowing & Guards
+status: done
+---
 
-> **Source:** `typescript/src/typeNarrowing.ts`
+# `typeNarrowing.ts` — Type Narrowing, Guards, Custom Predicates
+
+**Source:** `typescript/src/typeNarrowing.ts`
 
 ## Code
 
@@ -110,32 +116,36 @@ function isStringArray(arr: unknown): arr is string[]{
 }
 ```
 
-## Breakdown
+## Narrowing Techniques
 
 ### `typeof` Narrowing
-- TS Docs: *"Narrowing occurs when TypeScript can deduce a more specific type for a value based on the structure of the code."*
-- `typeof kind === 'string'` narrows `kind` to `string` inside the `if` block, `number` in the `else`.
+> [!quote] TypeScript Docs
+> *"Narrowing occurs when TypeScript can deduce a more specific type for a value based on the structure of the code."*
+
+`typeof kind === 'string'` narrows `kind` to `string` in the `if` block.
 
 ### Truthiness Narrowing
-- `if(msg)` — checks if `msg` (optional `string`) is truthy. TS Docs: *"JavaScript has truthiness — references to `null`/`undefined` will be filtered out."*
+- `if(msg)` — filters out `null`/`undefined`.
 
 ### Equality Narrowing
-- `size === "small"` — comparing against a literal narrows the union to that specific member.
+- `size === "small"` — comparing against a literal narrows the union.
 
 ### `instanceof` Narrowing
-- `chai instanceof KulhadChai` — JS operator that checks the prototype chain. TS narrows the type within each branch.
+- `chai instanceof KulhadChai` — JS operator check.
 
-### Custom Type Predicates (`is` return type)
-- `obj is ChaiOrder` — a return type annotation that acts as a type guard. When the function returns `true`, TS narrows the argument to `ChaiOrder`.
-- TS Docs: *"Functions that return boolean values can have a type predicate as their return type. A type predicate takes the form `parameterName is Type`."*
+### Custom Type Predicates
+- `obj is ChaiOrder` — return type that acts as a type guard.
+
+> [!quote] TypeScript Docs
+> *"Functions returning boolean can have a type predicate. It takes the form `parameterName is Type`."*
 
 ### Discriminated Unions
-- `MasalaChai | ElaichiChai | GingerChai` — each has a `type` field with a literal value. Switching on `order.type` narrows to each variant.
+- Each type has a literal `type` field (e.g., `"masala"`, `"elaichi"`, `"ginger"`). Switching/patter-matching on it narrows.
 
 ### `in` Operator Narrowing
-- `"spicelevel" in order` — checks if a property exists. TS narrows to the type that has that property.
+- `"spicelevel" in order` — checks property existence, narrows to the containing type.
 
 ### Exhaustiveness
-- The switch on `order.type` covers all cases. Adding `never` in a default case catches unhandled variants.
+- `never` in a default case catches unhandled union members.
 
----
+**See also:** [[unionAndAny]], [[interface]], [[moreTypes]], [[oop]]

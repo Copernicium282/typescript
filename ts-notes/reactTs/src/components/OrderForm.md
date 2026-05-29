@@ -1,6 +1,12 @@
-# `OrderForm.tsx` — Forms, Event Handlers, Callback Props
+---
+tags: [typescript, react, forms, events]
+topic: React Component — OrderForm with Typed Events
+status: done
+---
 
-> **Source:** `typescript/reactTs/src/components/OrderForm.tsx`
+# `OrderForm.tsx` — Typed Forms & Event Handlers
+
+**Source:** `typescript/reactTs/src/components/OrderForm.tsx`
 
 ## Code
 
@@ -43,24 +49,26 @@ export function OrderForm({onSubmit}: OrderFormProps){
 }
 ```
 
+## Event Types
+
+| Event | Type |
+|-------|------|
+| Form submit | `React.FormEvent<HTMLFormElement>` |
+| Input change | `React.ChangeEvent<HTMLInputElement>` |
+
 ## Breakdown
 
-### Callback Props with Object Parameter
-- `onSubmit(order: {name: string; cups: number}): void` — inline object type for the callback parameter.
+### Callback Prop
+- `onSubmit(order: {name: string; cups: number}): void` — inline object type.
 
-### `React.FormEvent`
-- `e: React.FormEvent<HTMLFormElement>` — type for form submit events. Generic parameter specifies the element type.
+### Generic Event Types
+- `React.FormEvent<HTMLFormElement>` — form submissions.
+- `React.ChangeEvent<HTMLInputElement>` — input change events.
 
-### `React.ChangeEvent`
-- `e: React.ChangeEvent<HTMLInputElement>` — type for input change events. Access `e.target.value` safely.
+> [!quote] TypeScript Docs
+> *"React provides types for all synthetic events."*
 
-### State Initialization
-- `useState<string>("Masala")` / `useState<number>(1)` — explicit generics for state hooks.
+### Number Handling
+- `Number(e.target.value) || 0` — `e.target.value` is always `string`.
 
-### Number Conversion
-- `Number(e.target.value) || 0` — safely handles parsing. `e.target.value` is always a `string` from the input.
-
-### Optional Chaining on Events
-- `e?.preventDefault()` — optional chaining in case `e` is nullish (defensive).
-
----
+**See also:** [[counter]], [[useFetch]], [[typeNarrowing]]

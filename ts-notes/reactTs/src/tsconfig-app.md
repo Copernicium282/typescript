@@ -1,6 +1,12 @@
-# `tsconfig.app.json` — React App TypeScript Config (Bundler Mode)
+---
+tags: [typescript, react, config, vite]
+topic: React App tsconfig
+status: done
+---
 
-> **Source:** `typescript/reactTs/tsconfig.app.json`
+# `tsconfig.app.json` — React App Config (Bundler Mode)
+
+**Source:** `typescript/reactTs/tsconfig.app.json`
 
 ## Config
 
@@ -36,14 +42,11 @@
 
 | Option | Purpose |
 |--------|---------|
-| `lib: ["ES2023", "DOM"]` | Include type definitions for ES2023 and browser DOM |
-| `types: ["vite/client"]` | Include Vite's client-side type definitions |
-| `moduleResolution: "bundler"` | Module resolution strategy compatible with bundlers (Vite) |
-| `allowImportingTsExtensions` | Allow `.ts`/`.tsx` extensions in imports |
-| `noEmit: true` | Don't emit compiled JS — bundler handles it |
-| `jsx: "react-jsx"` | Use the new JSX transform (no need to `import React`) |
-| `noUnusedLocals` | Error on unused local variables |
-| `noUnusedParameters` | Error on unused function parameters |
-| `erasableSyntaxOnly` | Only allow TS syntax that can be erased (no enums/namespaces) |
+| `lib: ["ES2023", "DOM"]` | Browser + ES2023 types |
+| `types: ["vite/client"]` | Vite client types (env, imports) |
+| `moduleResolution: "bundler"` | Vite/bundler compatible resolution |
+| `noEmit: true` | Vite handles compilation |
+| `jsx: "react-jsx"` | New JSX transform (no `import React`) |
+| `erasableSyntaxOnly` | Only erasable TS syntax |
 
----
+**See also:** [[tsconfig]], [[tsconfig-node]], [[vite-config]]

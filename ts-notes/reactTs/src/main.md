@@ -1,6 +1,12 @@
-# `main.tsx` — React Entry Point with `createRoot`
+---
+tags: [typescript, react, entry, dom]
+topic: React Entry Point
+status: done
+---
 
-> **Source:** `typescript/reactTs/src/main.tsx`
+# `main.tsx` — React DOM Entry
+
+**Source:** `typescript/reactTs/src/main.tsx`
 
 ## Code
 
@@ -20,13 +26,12 @@ createRoot(document.getElementById('root')!).render(
 ## Breakdown
 
 ### Non-null Assertion (`!`)
-- `document.getElementById('root')!` — TS Docs: *"Writing `!` after any expression is effectively a type assertion that the value isn't `null` or `undefined`."*
-- `getElementById` returns `HTMLElement | null`. The `!` asserts the element exists.
+- `document.getElementById('root')!` — asserts element exists (not `null`).
 
-### `createRoot` Typed API
-- `createRoot` from `react-dom/client` is fully typed. Returns `Root` with `.render()` method.
+> [!quote] TypeScript Docs
+> *"Writing `!` after any expression is a type assertion that the value isn't `null` or `undefined`."*
 
-### `.tsx` Import Extension
-- `import App from './App.tsx'` — bundler config allows `.tsx` extensions (configured in `tsconfig.app.json` with `allowImportingTsExtensions`).
+### Typed `createRoot`
+- Fully typed from `react-dom/client`.
 
----
+**See also:** [[App]], [[notes]]

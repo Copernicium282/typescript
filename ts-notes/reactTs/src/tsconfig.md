@@ -1,6 +1,12 @@
+---
+tags: [typescript, react, config, references]
+topic: Root React tsconfig with Project References
+status: done
+---
+
 # `tsconfig.json` (React TS) — Project References
 
-> **Source:** `typescript/reactTs/tsconfig.json`
+**Source:** `typescript/reactTs/tsconfig.json`
 
 ## Config
 
@@ -17,9 +23,11 @@
 ## Breakdown
 
 ### Project References
-- TS Docs: *"Project references allow a TypeScript program to be split into smaller pieces."*
-- The main config uses `files: []` (no direct compilation) and delegates to referenced sub-configs.
-- `tsconfig.app.json` — for the React app source (`src/`)
-- `tsconfig.node.json` — for Node-side config files (`vite.config.ts`)
 
----
+> [!quote] TypeScript Docs
+> *"Project references allow a TypeScript program to be split into smaller pieces."*
+
+- `files: []` — no direct compilation
+- Delegates to [[tsconfig-app]] (React app) and [[tsconfig-node]] (config files)
+
+**See also:** [[tsconfig]], [[tsconfig-app]], [[tsconfig-node]]

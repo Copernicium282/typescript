@@ -1,6 +1,12 @@
-# `generics.ts` — Generics: Functions, Interfaces, Utility Patterns
+---
+tags: [typescript, generics, reusability]
+topic: Generics
+status: done
+---
 
-> **Source:** `typescript/src/generics.ts`
+# `generics.ts` — Generics for Reusable Code
+
+**Source:** `typescript/src/generics.ts`
 
 ## Code
 
@@ -50,21 +56,21 @@ const res: APIpromise<{flavour: string}> = {
 ## Breakdown
 
 ### Generic Functions
-- `function wrapInArray<T>(item: T): T[]` — TS Docs: *"Generics provide a way to make components work with any data type and not restrict to one data type."*
-- `T` is a type parameter — inferred from usage: `wrapInArray("masala")` → `T = string`.
+- `function wrapInArray<T>(item: T): T[]` — `T` is inferred from usage.
+
+> [!quote] TypeScript Docs
+> *"Generics provide a way to make components work with any data type and not restrict to one data type."*
 
 ### Multiple Type Parameters
-- `function pair<A, B>(a: A, b: B): [A, B]` — two independent type parameters.
+- `function pair<A, B>(a: A, b: B): [A, B]` — independent types.
 
 ### Generic Interfaces
-- `interface Box<T> { content: T }` — TS Docs: *"You can use generics in interfaces."*
-- Specified at usage: `Box<number>`, `Box<string>`.
+- `interface Box<T> { content: T }` — reusable shape.
 
 ### Real-world Pattern
-- `interface APIpromise<T>` — common pattern for API response wrappers. `data` field is generic.
-- Predefined generics appear in libraries like Axios, React (`useState<T>`, `useEffect`), etc.
+- `interface APIpromise<T>` — common API wrapper pattern.
 
-### Generic Constraints (not shown but related)
-- TS Docs: *"You can constrain a type parameter with `extends`: `function loggingIdentity<T extends Lengthwise>(arg: T): T`."*
+> [!tip] Generics in the Wild
+> `useState<T>` in React, `AxiosResponse<T>`, `Array<T>` — all use generics. See [[useFetch]], [[webReq]].
 
----
+**See also:** [[interfacePt2]], [[objectsTS]], [[webReq]], [[fetchReq]]

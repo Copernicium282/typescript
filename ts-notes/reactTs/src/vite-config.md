@@ -1,6 +1,12 @@
-# `vite.config.ts` — Vite Build Tool Configuration
+---
+tags: [typescript, vite, build-tool, config]
+topic: Vite Configuration
+status: done
+---
 
-> **Source:** `typescript/reactTs/vite.config.ts`
+# `vite.config.ts` — Vite Build Config
+
+**Source:** `typescript/reactTs/vite.config.ts`
 
 ## Code
 
@@ -16,11 +22,10 @@ export default defineConfig({
 
 ## Breakdown
 
-### `defineConfig`
-- Vite's `defineConfig` helper provides full TypeScript intellisense for the config object.
-- TS Docs: *"Library authors ship comprehensive type definitions to provide editor tooling."*
+### `defineConfig` Typing
+- Provides full type intellisense for the config object.
 
 ### Plugin Typing
-- `@vitejs/plugin-react` is fully typed — Vite validates the plugins array structure.
+- `@vitejs/plugin-react` ships its own type definitions.
 
----
+**See also:** [[tsconfig-app]], [[tsconfig-node]]

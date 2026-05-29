@@ -1,6 +1,12 @@
+---
+tags: [typescript, basics, type-inference]
+topic: Type Inference & Annotations
+status: done
+---
+
 # `typesInTS.ts` — Type Inference & Annotations
 
-> **Source:** `typescript/src/typesInTS.ts`
+**Source:** `typescript/src/typesInTS.ts`
 
 ## Code
 
@@ -16,14 +22,24 @@ chaiFlavour = "ginger tea" //  can be overrided, but not with a different dataty
 ## Breakdown
 
 ### Type Inference
-- `let drink = "chai"` — TypeScript infers `drink` as `string` from the initial value.
-- `let cups = Math.random() > 0.5 ? 10 : '5'` — inferred as `number | string` (union) because the ternary returns either type.
-- TS Docs: *"Wherever possible, TypeScript tries to automatically infer the types in your code. The type of a variable is inferred based on the type of its initializer."*
+- `let drink = "chai"` → inferred as `string`.
+- `let cups = Math.random() > 0.5 ? 10 : '5'` → inferred as `number | string` ([[unionAndAny|union]]).
 
-### Explicit Type Annotations
-- `let chaiFlavour: string = "masala chai"` — forces the variable to type `string`. Reassigning to a non-string (e.g. `chaiFlavour = 42`) errors.
+> [!quote] TypeScript Docs
+> *"Wherever possible, TypeScript tries to automatically infer the types in your code."*
+
+### Explicit Annotations
+- `let chaiFlavour: string = "masala chai"` — reassigning to non-string errors.
 
 ### Primitives
-- TS Docs: JavaScript has three commonly used primitives: `string`, `number`, and `boolean`. *"Always use `string`, `number`, or `boolean` for types (lowercase)."*
 
----
+| Type | Values |
+|------|--------|
+| `string` | `"hello"`, `'world'` |
+| `number` | `42`, `3.14` |
+| `boolean` | `true`, `false` |
+
+> [!quote] TypeScript Docs
+> *"Always use `string`, `number`, or `boolean` for types (lowercase)."*
+
+**See also:** [[index]], [[unionAndAny]], [[moreTypes]]

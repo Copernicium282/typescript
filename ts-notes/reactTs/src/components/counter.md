@@ -1,6 +1,12 @@
-# `counter.tsx` — `useState` with Type Parameter
+---
+tags: [typescript, react, hooks, useState]
+topic: React Component — Counter with Typed State
+status: done
+---
 
-> **Source:** `typescript/reactTs/src/components/counter.tsx`
+# `counter.tsx` — Typed useState
+
+**Source:** `typescript/reactTs/src/components/counter.tsx`
 
 ## Code
 
@@ -20,11 +26,13 @@ export function Counter(){
 
 ## Breakdown
 
-### `useState` Generic
-- `useState<number>(0)` — explicit type parameter. TS Docs: "React's type definitions use generics extensively."
-- In this case inference works too: `useState(0)` infers `number`.
+### Generic `useState<T>`
+- `useState<number>(0)` — explicit generic. Inference also works from `useState(0)`.
 
-### State Update with Callback
-- `setCount((c) => c+1)` — functional update. TS infers `c` as `number` from the state type.
+> [!quote] TypeScript Docs
+> *"React's type definitions use generics extensively."*
 
----
+### Functional Update
+- `setCount((c) => c+1)` — `c` inferred as `number`.
+
+**See also:** [[OrderForm]], [[useFetch]]

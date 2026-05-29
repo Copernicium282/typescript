@@ -1,6 +1,12 @@
-# `tsconfig.json` (Root) — TypeScript Compiler Configuration
+---
+tags: [typescript, config, tsconfig]
+topic: TypeScript Compiler Configuration
+status: done
+---
 
-> **Source:** `typescript/tsconfig.json`
+# `tsconfig.json` (Root) — Compiler Options
+
+**Source:** `typescript/tsconfig.json`
 
 ## Config
 
@@ -31,23 +37,24 @@
 }
 ```
 
-## Key Options (from TS Docs)
+## Key Options
 
-| Option | Purpose |
-|--------|---------|
-| `rootDir` | Root directory of input source files |
-| `outDir` | Output directory for compiled JS |
-| `module: "nodenext"` | Node.js module resolution (ESM/CJS aware) |
-| `target: "esnext"` | Target ECMAScript version |
-| `sourceMap` | Generate `.js.map` source maps |
-| `declaration` | Generate `.d.ts` declaration files |
-| `declarationMap` | Generate `.d.ts.map` source maps |
-| `strict: true` | Enable all strict type-checking options |
-| `noUncheckedIndexedAccess` | Accessing index signature properties yields `T | undefined` |
-| `exactOptionalPropertyTypes` | Optional properties can't have `undefined` explicitly assigned |
-| `verbatimModuleSyntax` | Preserve import/export syntax as-is (no elision) |
-| `isolatedModules` | Ensure each file can be transpiled independently |
-| `moduleDetection: "force"` | Treat all files as modules |
-| `skipLibCheck` | Skip type-checking `.d.ts` files (faster compilation) |
+> [!quote] TypeScript Docs
+> *"The tsconfig.json file specifies the root files and the compiler options required to compile the project."*
 
----
+| Option | Effect |
+|--------|--------|
+| `rootDir` | Input source root |
+| `outDir` | Output directory |
+| `module: "nodenext"` | Node.js ESM/CJS resolution |
+| `target: "esnext"` | Latest ECMAScript |
+| `sourceMap` | `.js.map` for debugging |
+| `declaration` | Emit `.d.ts` files |
+| `strict: true` | All strict checks enabled |
+| `noUncheckedIndexedAccess` | Index access → `T \| undefined` |
+| `exactOptionalPropertyTypes` | `?` props can't have explicit `undefined` |
+| `verbatimModuleSyntax` | Preserve import syntax |
+| `isolatedModules` | Safe for transpilers (Vite, Babel) |
+| `skipLibCheck` | Skip `.d.ts` checking (faster) |
+
+**See also:** [[notes]], [[tsconfig-app]], [[tsconfig-node]]

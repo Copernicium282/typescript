@@ -1,6 +1,12 @@
-# `interface.ts` — Type Aliases vs Interfaces, Intersections, Modifiers
+---
+tags: [typescript, interfaces, type-aliases]
+topic: Type Aliases vs Interfaces
+status: done
+---
 
-> **Source:** `typescript/src/interface.ts`
+# `interface.ts` — Type Aliases, Interfaces, Intersections, Modifiers
+
+**Source:** `typescript/src/interface.ts`
 
 ## Code
 
@@ -79,28 +85,32 @@ cfg.version = 2 // changeable
 // cfg.appName = "Newapp" // Cannot assign to 'appName' because it is a read-only property.
 ```
 
-## Breakdown
+## `type` vs `interface`
 
-### `type` vs `interface`
-- Both define object shapes. Key differences from TS Docs:
-  - **Interface**: can be re-opened (declaration merging), extended via `extends`.
-  - **Type**: cannot be re-opened, but can represent unions, intersections, primitives.
-  - Heuristic: *"Use `interface` until you need to use features from `type`."*
+| Feature | `type` | `interface` |
+|---------|--------|-------------|
+| Unions | ✅ Yes | ❌ No |
+| Primitives | ✅ Yes | ❌ No |
+| Declaration merging | ❌ No | ✅ Yes |
+| `extends` / `implements` | ⚠️ Intersections (`&`) | ✅ Native `extends` |
+| Heuristic | Use for unions, primitives | Use for object shapes |
 
-### `implements`
-- `class MasalaChai implements TeaRecipe` — a class can `implement` an interface or object type.
-- Cannot `implement` a union type like `"small" | "large"`.
+> [!quote] TypeScript Docs
+> *"Use `interface` until you need to use features from `type`."*
 
-### Intersection Types (`&`)
-- `BaseChai & Extra` — combines both types. The resulting type has all properties from both.
-- TS Docs: *"Intersection types combine multiple types into one."*
+## Intersection Types (`&`)
+- `BaseChai & Extra` — combines all properties. See [[objectsTS]].
 
-### Optional Properties (`?`)
-- `bio?: string` — property may be absent. TS Docs: *"Add a `?` after the property name to make it optional."*
-- Reading an optional property checks for `undefined`.
+## Optional Properties (`?`)
+- `bio?: string` — may be absent.
 
-### `readonly` Modifier
-- `readonly appName: string` — prevents reassignment after initialization.
-- TS Docs: *"Properties marked with `readonly` can only be assigned to during initialization or in a constructor."*
+## `readonly` Modifier
+- `readonly appName: string` — no reassignment after init.
 
----
+> [!quote] TypeScript Docs
+> *"Properties marked with `readonly` can only be assigned during initialization or in a constructor."*
+
+## `implements`
+- `class MasalaChai implements TeaRecipe` — class must satisfy the interface shape.
+
+**See also:** [[interfacePt2]], [[objectsTS]], [[oop]]

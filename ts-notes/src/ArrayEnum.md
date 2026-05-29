@@ -1,6 +1,12 @@
+---
+tags: [typescript, arrays, tuples, enums]
+topic: Arrays, Tuples & Enums
+status: done
+---
+
 # `ArrayEnum.ts` — Arrays, Tuples, Enums
 
-> **Source:** `typescript/src/ArrayEnum.ts`
+**Source:** `typescript/src/ArrayEnum.ts`
 
 ## Code
 
@@ -89,31 +95,35 @@ let t: [string, number] = ["chai", 10]
 t.push("Extra") // Here it gives no error as tuple is an array itself and items can be pushed into an array
 ```
 
-## Breakdown
+## Arrays
 
-### Arrays
-- `string[]` / `Array<number>` — two equivalent syntaxes. TS Docs: *"To specify the type of an array like [1,2,3], use the syntax `number[]`; you may also see `Array<number>`."*
+| Syntax | Example |
+|--------|---------|
+| `type[]` | `string[]` |
+| `Array<type>` | `Array<number>` |
+| `readonly type[]` | `readonly string[]` |
 
-### `readonly` Arrays
-- `readonly string[]` — prevents mutation methods (`push`, `pop`, etc.). TS Docs: *"ReadonlyArray is a special type that describes arrays that shouldn't be changed."*
+> [!quote] TypeScript Docs
+> *"To specify the type of an array like [1,2,3], use the syntax `number[]`; you may also see `Array<number>`."*
 
-### Multi-dimensional Arrays
-- `number[][]` — an array of arrays of numbers.
+## Tuples
 
-### Tuples
-- `[string, number]` — fixed-length array with fixed types per position. TS Docs: *"A tuple type is another sort of Array type that knows exactly how many elements it contains, and exactly which types it contains at specific positions."*
-- `boolean?` — optional tuple element.
-- `readonly [number, number]` — immutable tuple.
-- Named tuples: `[name: string, price: number]` — more readable, recommended.
+- Fixed-length, typed-per-position arrays.
+- Named tuples: `[name: string, price: number]` — preferred.
 
-### Enums
-- TS Docs: *"Enums allow a developer to define a set of named constants. Using enums can make it easier to document intent, or create a set of distinct cases."*
-- **Numeric enums** — auto-increment from 0. Custom starting value (`PENDING = 100`).
-- **String enums** — `MASALA = "masala"`. More readable at runtime.
-- **Const enums** — `const enum Sugar` — completely inlined at compile time, no runtime object.
-- **Heterogeneous enums** — mix of string and numeric values (not recommended).
+> [!warning] Tuple `.push()` Caveat
+> `t.push("Extra")` doesn't error! Tuples are arrays at runtime. Use `readonly` to prevent this.
 
-### Tuple Caveat
-- `.push()` on a tuple doesn't error because tuples are arrays at runtime. Use `readonly` tuples to prevent this.
+## Enums
 
----
+| Enum Type | Starting Value | Example |
+|-----------|---------------|---------|
+| Numeric | 0 (auto) | `SMALL = 0` |
+| Numeric (custom) | User-set | `PENDING = 100` |
+| String | User-set | `MASALA = "masala"` |
+| Const | Inlined | `const enum Sugar` |
+
+> [!quote] TypeScript Docs
+> *"Enums allow a developer to define a set of named constants."*
+
+**See also:** [[interface]], [[generics]], [[objectsTS]]

@@ -1,6 +1,12 @@
-# `types.ts` — Shared Type Definitions (React TS)
+---
+tags: [typescript, react, shared-types]
+topic: Shared Type Definitions
+status: done
+---
 
-> **Source:** `typescript/reactTs/src/types/types.ts`
+# `types.ts` — Shared Type Definitions
+
+**Source:** `typescript/reactTs/src/types/types.ts`
 
 ## Code
 
@@ -14,10 +20,12 @@ export interface Chai {
 
 ## Breakdown
 
-### Shared Types
-- A dedicated `types/` directory for shared type definitions. Reused across components via `import type { Chai } from "../types/types"`.
+### Shared Types Pattern
+- Centralized `types/` directory for types used across components.
+- Reimported via `import type { Chai } from "../types/types"`.
 
-### `export` for Reusability
-- Exported interfaces can be imported in multiple components. TS Docs: *"You can export interfaces and types to reuse them across files."*
+### Why Export?
+> [!quote] TypeScript Docs
+> *"You can export interfaces and types to reuse them across files."*
 
----
+**See also:** [[ChaiList]], [[App]]

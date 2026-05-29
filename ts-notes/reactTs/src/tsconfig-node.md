@@ -1,6 +1,12 @@
-# `tsconfig.node.json` — Node/Config TypeScript Config
+---
+tags: [typescript, react, config, node]
+topic: Node Config tsconfig
+status: done
+---
 
-> **Source:** `typescript/reactTs/tsconfig.node.json`
+# `tsconfig.node.json` — Node-Side Config
+
+**Source:** `typescript/reactTs/tsconfig.node.json`
 
 ## Config
 
@@ -31,10 +37,12 @@
 }
 ```
 
-## Key Differences from `tsconfig.app.json`
+## Differences from `tsconfig.app.json`
 
-- `lib: ["ES2023"]` — no DOM types (Node.js context)
-- `types: ["node"]` — Node.js type definitions instead of Vite client types
-- Only includes `vite.config.ts` (Node-side config file), not the React `src/`
+| Aspect | `app.json` | `node.json` |
+|--------|-----------|-------------|
+| `lib` | + `"DOM"` | `"ES2023"` only |
+| `types` | `["vite/client"]` | `["node"]` |
+| Scope | `src/` | `vite.config.ts` |
 
----
+**See also:** [[tsconfig-app]], [[tsconfig]], [[vite-config]]

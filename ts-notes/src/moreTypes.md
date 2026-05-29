@@ -1,6 +1,12 @@
+---
+tags: [typescript, type-assertions, never, unknown]
+topic: Type Assertions, unknown, never
+status: done
+---
+
 # `moreTypes.ts` — Type Assertions, `unknown`, `never`
 
-> **Source:** `typescript/src/moreTypes.ts`
+**Source:** `typescript/src/moreTypes.ts`
 
 ## Code
 
@@ -72,25 +78,34 @@ function neverReturn(): never{ // functions that never end / infinite loop
 ## Breakdown
 
 ### Type Assertions (`as`)
-- `(response as string).length` — asserts `response` is `string` to access `.length`. TS Docs: *"Sometimes you will have information about the type of a value that TypeScript can't know about."*
-- `JSON.parse(bookString) as Book` — tells TS the parsed object is of type `Book`.
-- `document.getElementById("username") as HTMLInputElement` — common in React/DOM code to narrow `HTMLElement` to `HTMLInputElement`.
-- TS Docs: *"Type assertions are removed by the compiler and won't affect the runtime behavior of your code."*
+- `(response as string).length` — asserts `response` is `string`.
 
-### Angle Bracket Syntax
-- Alternatively: `const myCanvas = <HTMLCanvasElement>document.getElementById("main_canvas")` — but this doesn't work in `.tsx` files.
+> [!quote] TypeScript Docs
+> *"Sometimes you will have information about the type of a value that TypeScript can't know about."*
+
+> [!warning] No Runtime Effect
+> *"Type assertions are removed by the compiler and won't affect the runtime behavior."*
+
+Angle bracket syntax: `<HTMLCanvasElement>document.getElementById(...)` — but doesn't work in `.tsx`.
 
 ### `any` vs `unknown`
-- **`any`** — `value.toUpperCase()` works without error even when `value` is a `number`. TS Docs: *"When a value is of type `any`, you can access any properties of it."*
-- **`unknown`** — must be narrowed before use. `newValue.toUpperCase()` errors unless we check `typeof newValue === "string"`.
 
-### `unknown` with `catch`
-- `error` in `catch` is `unknown`. Narrow with `error instanceof Error` before accessing `error.message`.
+| Aspect | `any` | `unknown` |
+|--------|-------|-----------|
+| Access methods | ✅ Any method | ❌ Must narrow first |
+| Type safety | ❌ None | ✅ Must check before use |
+| Use case | Migration | Unknown API data |
+
+> [!quote] TypeScript Docs
+> *"When a value is of type `any`, you can access any properties of it."*
+
+### `catch` with `unknown`
+- `error` is `unknown`. Must narrow: `error instanceof Error` before `error.message`.
 
 ### `never` Type
-- `role` after exhaustive `if` checks becomes `never` — all possible types have been handled.
-- TS Docs: *"The `never` type represents values which are never observed. `never` is assigned to a function's return type when it never returns."*
-- `neverReturn(): never` — a function that never reaches the end (infinite loop, throws always).
-- Useful for exhaustiveness checking: if a new union member is added without updating checks, the `never` variable errors.
+- After exhaustive `if`/`else` checks, remaining type is `never`.
 
----
+> [!quote] TypeScript Docs
+> *"The `never` type represents values which are never observed — for functions that never return."*
+
+**See also:** [[unionAndAny]], [[typeNarrowing]], [[interface]]

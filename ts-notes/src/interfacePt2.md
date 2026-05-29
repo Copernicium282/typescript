@@ -1,6 +1,12 @@
-# `interfacePt2.ts` — Interfaces: Readonly, Method Signatures, Index Signatures, Merging, Extension
+---
+tags: [typescript, interfaces, index-signatures, merging]
+topic: Interfaces — Advanced Features
+status: done
+---
 
-> **Source:** `typescript/src/interfacePt2.ts`
+# `interfacePt2.ts` — Interfaces: Index Signatures, Merging, Extension
+
+**Source:** `typescript/src/interfacePt2.ts`
 
 ## Code
 
@@ -78,29 +84,32 @@ interface C extends A,B {}
 
 ## Breakdown
 
-### Interface Basics
-- TS Docs: *"An interface declaration is another way to name an object type."*
-- Interfaces and type aliases are ~80% interchangeable. Key differences:
-  - Interfaces can be **merged** (declaration merging)
-  - Interfaces can be **extended**
-  - Types can represent unions, primitives, and intersections
-
-### `readonly` in Interfaces
-- Same as types — `readonly id: number` prevents reassignment.
-
-### Function/Method Signatures
-- `interface DiscountCalculator { (price: number): number }` — describes a callable.
-- `interface teaMachine { start(): void; stop(): void }` — describes an object with methods.
+### Method Signatures
+- `interface DiscountCalculator { (price: number): number }` — callable interface.
+- `interface teaMachine { start(): void; stop(): void }` — object with methods.
 
 ### Index Signatures
-- `[flavour: string]: number` — when you don't know property names but know the value type. TS Docs: *"Sometimes you don't know all the names of a type's properties, but you do know the shape of the values."*
+- `[flavour: string]: number` — when property names are dynamic but value types are known.
+
+> [!quote] TypeScript Docs
+> *"Sometimes you don't know all the names of a type's properties, but you do know the shape of the values."*
 
 ### Declaration Merging
-- Two interfaces with the same name in the same scope **merge** automatically.
-- TS Docs: *"One of the key differences between type and interface is that interfaces are open to extension — you can add new fields to an existing interface."*
-- The merged interface requires ALL properties from both declarations.
+- Two `interface User` declarations **merge** automatically. All properties required.
+
+> [!quote] TypeScript Docs
+> *"Interfaces are open to extension — you can add new fields to an existing interface."*
 
 ### Interface Extension
-- `interface C extends A, B` — inherits all properties of both A and B. TS Docs: *"Interfaces can extend other interfaces, extracting all members."*
+- `interface C extends A, B` — inherits all properties.
 
----
+### `type` vs `interface` Quick Comparison
+
+| Feature | `type` | `interface` |
+|---------|--------|-------------|
+| Unions | ✅ | ❌ |
+| Merging | ❌ | ✅ |
+| Extends | `&` | `extends` |
+| Constraint | `T extends U` | Same |
+
+**See also:** [[interface]], [[generics]], [[oop]]

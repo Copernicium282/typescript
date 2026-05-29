@@ -1,6 +1,12 @@
-# `ChaiCard.tsx` — Component with Default Prop Values
+---
+tags: [typescript, react, components, defaults]
+topic: React Component — ChaiCard with Default Props
+status: done
+---
 
-> **Source:** `typescript/reactTs/src/components/ChaiCard.tsx`
+# `ChaiCard.tsx` — Component with Default Prop
+
+**Source:** `typescript/reactTs/src/components/ChaiCard.tsx`
 
 ## Code
 
@@ -25,14 +31,13 @@ export function ChaiCard({name, price, isSpecial=false}: ChaiCardProp){
 
 ## Breakdown
 
-### Props Interface
-- `ChaiCardProp` defines the contract for props. `isSpecial` is optional.
+### Default Destructured Value
+- `isSpecial=false` — TS infers type from default. No annotation needed.
 
-### Default Prop Values
-- `isSpecial=false` — destructuring with default value. TS infers the type from the default.
-- TS Docs: *"Default-initialized parameters have their type inferred. The type annotation is optional."*
+> [!quote] TypeScript Docs
+> *"Default-initialized parameters have their type inferred."*
 
-### Conditional Rendering with `&&`
-- `{isSpecial && <span>⭐</span>}` — renders a star only when `isSpecial` is truthy.
+### Conditional Star
+- `{isSpecial && <span>⭐</span>}` — renders when `isSpecial` is true.
 
----
+**See also:** [[Card]], [[ChaiList]]

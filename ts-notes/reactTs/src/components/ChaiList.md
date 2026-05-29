@@ -1,6 +1,12 @@
-# `ChaiList.tsx` — Typed Props with Array of Objects
+---
+tags: [typescript, react, lists, typed-arrays]
+topic: React Component — ChaiList with Typed Array
+status: done
+---
 
-> **Source:** `typescript/reactTs/src/components/ChaiList.tsx`
+# `ChaiList.tsx` — Typed Array Props
+
+**Source:** `typescript/reactTs/src/components/ChaiList.tsx`
 
 ## Code
 
@@ -30,16 +36,16 @@ export function ChaiList({items}: ChaiListProps){
 
 ## Breakdown
 
-### Typed Array Props
-- `items: Chai[]` — an array of `Chai` objects. TS ensures each object has `id`, `name`, `price`.
+### Typed Array Prop
+- `items: Chai[]` — array of `Chai` objects.
 
-### `import type`
-- `import type { Chai }` — type-only import, erased at runtime.
+### Contextual Typing in `.map()`
+- `items.map((chai) => ...)` — TS infers `chai` as `Chai` from context.
 
-### `key` Prop
-- `key={chai.id}` — React requires a unique `key` for list items. TS ensures it matches the `id` type (`number`).
+> [!quote] TypeScript Docs
+> *"Contextual typing occurs when the context informs what type it should have."*
 
-### Conditional Logic in Template
-- `isSpecial={chai.price > 30}` — TS ensures both sides of `>` are numbers.
+### Conditionally Passing Props
+- `isSpecial={chai.price > 30}` — TS validates both sides of `>` are `number`.
 
----
+**See also:** [[ChaiCard]], [[types]]

@@ -1,6 +1,12 @@
-# `App.tsx` — Parent Component with Typed Data & Props
+---
+tags: [typescript, react, composition]
+topic: React App — Component Composition
+status: done
+---
 
-> **Source:** `typescript/reactTs/src/App.tsx`
+# `App.tsx` — Parent Component
+
+**Source:** `typescript/reactTs/src/App.tsx`
 
 ## Code
 
@@ -57,18 +63,13 @@ function App() {
 export default App
 ```
 
-## Breakdown
+## Key Points
 
-### Typed Array Declaration
-- `const menu: Chai[] = [...]` — typed array of `Chai` objects. Each element must match the `Chai` interface.
+- `menu: Chai[]` — typed array checked against the [[types]] interface.
+- Props on all child components are **type-checked** against their interfaces.
+- `onSubmit={(order) => ...}` — `order` inferred via **contextual typing** from `OrderFormProps`.
 
-### Component Composition
-- All components are composed in `App`. Props are type-checked against their respective prop interfaces.
+> [!quote] TypeScript Docs
+> *"The context that a function occurred within informs what type it should have."*
 
-### Inline Callback
-- `onSubmit={(order) => { ... }}` — TS infers `order` type from `OrderFormProps.onSubmit`. This is **contextual typing** — TS Docs: *"The context that the function occurred within informs what type it should have."*
-
-### `footer` as `ReactNode`
-- `footer={<button>Order Now</button>}` — passing JSX as a prop of type `ReactNode`.
-
----
+**See also:** [[main]], [[ChaiList]], [[OrderForm]], [[Card]], [[ChaiCard]], [[counter]]
