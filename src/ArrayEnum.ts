@@ -1,0 +1,84 @@
+// Basic dtype arrays
+const chaiFlavours: string[] = ["masala", "ginger"]
+const chaiPrices: number[] = [20, 25]
+
+const rating: Array<number> = [4.5, 5.0]
+
+type Chai = {
+    name: string;
+    price: number;
+}
+
+// Arrays of custom dtypes
+const menu: Chai[] = [
+    {name: "Masala", price: 20},
+    {name: "Ginger", price: 25}
+]
+
+// readonly array
+const cities: readonly string[] = ["Delhi", "Jaipur"]
+// cities.push("Pune") // Property 'push' does not exist on type 'readonly string[]'.
+
+// Multidimensional Arrays
+const table: number[][] = [
+    [1,2,3],
+    [4,5,6]
+]
+
+// Tuples
+let chaiTuple: [string, number]
+chaiTuple = ["Masala", 2] // order should strictly be same
+
+let userInfo: [string, number, boolean?]
+userInfo = ["Amit", 100] // boolean is optional
+
+const location: readonly [number, number] = [23.45, 12.24] // readonly tuple
+const chaiItems: [name: string, price: number] = ["Masala", 20] // named tuples, more preferred
+
+// enum
+enum CupSize {
+    SMALL,
+    MEDIUM,
+    LARGE
+}
+
+const size = CupSize.LARGE
+
+// customizing enums
+enum Status {
+    PENDING = 100,
+    SERVED, // 101
+    CANCELLED // 102
+}
+
+enum ChaiType {
+    MASALA = "masala",
+    GINGER = "ginger"
+}
+function MakeChai(type: ChaiType){
+    console.log(`Making ${type}`)
+}
+
+MakeChai(ChaiType.GINGER)
+// MakeChai("masala") // Argument of type '"masala"' is not assignable to parameter of type 'ChaiType'.
+
+// Heterogenous values, not used in production
+enum RandomEnum {
+    ID = 1,
+    NAME = "chai"
+}
+
+// Constant enums
+const enum Sugar {
+    LOW = 1,
+    MEDIUM = 2,
+    HIGH = 3
+}
+
+const s = Sugar.HIGH
+
+// Unexpected Behavior
+let t: [string, number] = ["chai", 10]
+t.push("Extra") // Here it gives no error as tuple is an array itself and items can be pushed into an array
+
+
